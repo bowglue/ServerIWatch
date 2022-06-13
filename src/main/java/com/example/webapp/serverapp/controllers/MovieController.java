@@ -10,6 +10,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -17,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.data.domain.Pageable;
 
 import javax.transaction.Transactional;
 import java.io.ByteArrayOutputStream;
@@ -45,9 +48,17 @@ public class MovieController {
 
     @GetMapping("/image")
     @Transactional
-    public List<MovieRepository.MovieInterface> listImage() {
-        return movieRepository.findAllMovieImage();
+    public List<MovieRepository.MovieInterface> listImage(@RequestParam("page") int page, @RequestParam("numberMovie") int numberMovie) {
+        Pageable number = PageRequest.of(page, numberMovie, Sort.by("movie_id"));
+        return movieRepository.findAllMovieImage(number);
     }
+
+    @GetMapping("/focus/{id}")
+    @Transactional
+    public MovieRepository.MovieInterface focusImage(@PathVariable  Long id) {
+        return movieRepository.findFocusImage(id);
+    }
+
 
    /* @RequestMapping("{id}")
     @Transactional

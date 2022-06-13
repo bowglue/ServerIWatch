@@ -16,9 +16,10 @@ public class Movie {
     private String movie_name;
     @Lob
     private String movie_image;
-
-    /*private String movie_title;
-    private String movie_focus;*/
+    @Lob
+    private String movie_title;
+    @Lob
+    private String movie_focus;
 
     public Long getMovie_id() {
        return movie_id;
@@ -41,7 +42,7 @@ public class Movie {
         this.movie_image = movie_image;
     }
 
-    /*public String getMovie_title() {
+    public String getMovie_title() {
         return movie_title;
     }
 
@@ -55,6 +56,6 @@ public class Movie {
 
     public void setMovie_focus(String movie_focus) {
         this.movie_focus = movie_focus;
-    }*/
+    }
 
 }

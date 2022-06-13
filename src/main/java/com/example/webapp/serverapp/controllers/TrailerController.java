@@ -12,6 +12,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import javax.websocket.server.PathParam;
 import java.util.Arrays;
 import java.util.List;
@@ -41,14 +42,9 @@ public class TrailerController {
         }
     }
 
-    interface TrailerInterface{
-        Long getMovie_id();
-        Long getSegment_id();
-    }
-
     @GetMapping("/segment")
-    public ResponseEntity<byte[]> getFile(@RequestParam("data") Long[] trailer) {
-        Optional<Trailer> fileEntityOptional = fileService.getFile(trailer[0], trailer[1]);
+    public ResponseEntity<byte[]> getFile(@RequestParam("movieId") Long movieId, @RequestParam("segmentId") Long segmentId) {
+        Optional<Trailer> fileEntityOptional = fileService.getFile(movieId, segmentId);
 
         if (!fileEntityOptional.isPresent()) {
             return ResponseEntity.notFound()
