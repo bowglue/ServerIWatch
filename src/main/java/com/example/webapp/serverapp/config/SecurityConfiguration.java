@@ -15,42 +15,47 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
     @Autowired
     private JwtFilter jwtFilter;
 
-   /* @Override
+    @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
-    }*/
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
-    /*@Override
+    @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }*/
+    }
 
  @Override
     protected void configure(HttpSecurity http) throws Exception {
-       /*http.csrf().disable()
+       http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/v1/login").permitAll()
                 .antMatchers("/api/v1/register").permitAll()
                 .antMatchers("/api/v1/movie/image").permitAll()
+               .antMatchers("/api/v1/movie/image/*").permitAll()
                 .antMatchers("/api/v1/movie/{id}").permitAll()
+               .antMatchers("/api/v1/movie/focus/{id}").permitAll()
                 .antMatchers("/api/v1/movie/upload").permitAll()
+               .antMatchers("/api/v1/trailer/segment").permitAll()
+               .antMatchers("/actuator").permitAll()
+               .antMatchers("/actuator/*").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);*/
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
