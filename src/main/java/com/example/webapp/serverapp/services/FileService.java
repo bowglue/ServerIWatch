@@ -1,7 +1,6 @@
 package com.example.webapp.serverapp.services;
 
 import com.example.webapp.serverapp.models.Trailer;
-import com.example.webapp.serverapp.repositories.MovieRepository;
 import com.example.webapp.serverapp.repositories.TrailerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

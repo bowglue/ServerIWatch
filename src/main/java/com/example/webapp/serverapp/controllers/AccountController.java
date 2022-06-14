@@ -25,8 +25,8 @@ public class AccountController {
     private AccountRepository accountRepository;
     @Autowired
     private UserService userService;
-   /* @Autowired
-    private AuthenticationManager authenticationManager;*/
+    @Autowired
+    private AuthenticationManager authenticationManager;
     @Autowired
     private JwtUtility jwtUtility;
 
@@ -37,7 +37,7 @@ public class AccountController {
         return accountRepository.findAll();
     }
 
-   /* @PostMapping("/login")
+    @PostMapping("/login")
     public JwtResponse login(@RequestBody JwtRequest jwtRequest) throws Exception{
         try{
            Authentication authentication = authenticationManager.authenticate(
@@ -57,7 +57,7 @@ public class AccountController {
                 = jwtUtility.generateToken(userDetails);
 
         return new JwtResponse(token);
-    }*/
+    }
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody final Account registerParam) {
