@@ -15,9 +15,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     interface MovieInterface{
         Long getMovie_id();
         String getMovie_name();
-        String getMovie_image();
-        String getMovie_title();
-        String getMovie_focus();
+        byte[] getMovie_image();
+        byte[] getMovie_title();
+        byte[] getMovie_focus();
     }
     @Query(value = "SELECT movie_id as movie_id, movie_image as movie_image, movie_name as movie_name, movie_title as movie_title from movie")
     List<MovieInterface> findAllMovieImage(Pageable pageable);

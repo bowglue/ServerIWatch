@@ -16,10 +16,10 @@ public class Movie {
     private String movie_name;
 
     private byte[] movie_image;
-    @Lob
-    private String movie_title;
-    @Lob
-    private String movie_focus;
+
+    private byte[] movie_title;
+
+    private byte[] movie_focus;
 
     public Long getMovie_id() {
        return movie_id;
@@ -42,19 +42,19 @@ public class Movie {
         this.movie_image = movie_image;
     }
 
-    public String getMovie_title() {
+    public byte[] getMovie_title() {
         return movie_title;
     }
 
-    public void setMovie_title(String movie_title) {
+    public void setMovie_title(byte[] movie_title) {
         this.movie_title = movie_title;
     }
 
-    public String getMovie_focus() {
+    public byte[] getMovie_focus() {
         return movie_focus;
     }
 
-    public void setMovie_focus(String movie_focus) {
+    public void setMovie_focus(byte[] movie_focus) {
         this.movie_focus = movie_focus;
     }
 
