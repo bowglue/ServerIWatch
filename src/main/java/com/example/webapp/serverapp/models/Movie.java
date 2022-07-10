@@ -14,8 +14,8 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movie_id;
     private String movie_name;
-    @Lob
-    private String movie_image;
+
+    private byte[] movie_image;
     @Lob
     private String movie_title;
     @Lob
@@ -35,10 +35,10 @@ public class Movie {
         this.movie_name = movie_name;
     }
 
-    public String getMovie_image() {
+    public byte[] getMovie_image() {
         return movie_image;
     }
-    public void setMovie_image(String movie_image) {
+    public void setMovie_image(byte[] movie_image) {
         this.movie_image = movie_image;
     }
 
