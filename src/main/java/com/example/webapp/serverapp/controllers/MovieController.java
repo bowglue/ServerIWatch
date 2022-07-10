@@ -22,6 +22,12 @@ public class MovieController {
     @Autowired
     private MovieRepository movieRepository;
 
+    @GetMapping("/test")
+    @Transactional
+    public List<Movie> movie(){
+        return movieRepository.findAll();
+    }
+
     @GetMapping("/image")
     @Transactional
     public List<MovieRepository.MovieInterface> listImage(@RequestParam("page") int page, @RequestParam("numberMovie") int numberMovie) {
@@ -31,7 +37,7 @@ public class MovieController {
 
     @GetMapping("/focus/{id}")
     @Transactional
-    public MovieRepository.MovieInterface focusImage(@PathVariable  Long id) {
+    public MovieRepository.MovieInterface focusImage(@PathVariable Long id) {
         return movieRepository.findFocusImage(id);
     }
 
@@ -43,9 +49,9 @@ public class MovieController {
         return  movieRepository.findMovieTrailerById(id);
     }*/
 
-   @PostMapping("/upload")
-    public Movie uploadImage(@RequestBody final Movie movie){
-       return movieRepository.saveAndFlush(movie);
+    @PostMapping("/upload")
+    public Movie uploadImage(@RequestBody final Movie movie) {
+        return movieRepository.saveAndFlush(movie);
     }
 
 
@@ -59,14 +65,14 @@ public class MovieController {
         return ResponseEntity.ok("200");
     }*/
 
-  /*  @MessageMapping("/trailer")
-    @SendTo("/topic/movie")
-    @Transactional
-    public MovieRepository.MovieInterface  message(Long id) throws Exception {
-        return  movieRepository.findMovieTrailerById(id);
-    }
-*/
-    public static byte[] compressImage(byte[] data) throws IOException{
+    /*  @MessageMapping("/trailer")
+      @SendTo("/topic/movie")
+      @Transactional
+      public MovieRepository.MovieInterface  message(Long id) throws Exception {
+          return  movieRepository.findMovieTrailerById(id);
+      }
+  */
+    public static byte[] compressImage(byte[] data) throws IOException {
 
         Deflater deflater = new Deflater();
         deflater.setLevel(Deflater.BEST_COMPRESSION);
