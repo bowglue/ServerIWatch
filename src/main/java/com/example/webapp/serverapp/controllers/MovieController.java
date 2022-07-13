@@ -37,6 +37,7 @@ public class MovieController {
     }
 
     @GetMapping("/focus/{id}")
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
     @Transactional
     public MovieRepository.MovieInterface focusImage(@PathVariable Long id) {
         return movieRepository.findFocusImage(id);
@@ -51,6 +52,7 @@ public class MovieController {
     }*/
 
     @PostMapping("/upload")
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
     public Movie uploadImage(@RequestBody final Movie movie) {
         return movieRepository.saveAndFlush(movie);
     }

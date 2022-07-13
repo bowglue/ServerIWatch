@@ -24,6 +24,7 @@ public class TrailerController {
     }
 
     @PostMapping
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
     public ResponseEntity<String> upload(@RequestParam("data") MultipartFile file, @RequestParam("segment_id") String segment_id, @RequestParam("movie_id") String movie_id) {
         try {
             fileService.save(file, segment_id, movie_id);
@@ -37,6 +38,7 @@ public class TrailerController {
     }
 
     @GetMapping("/segment")
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
     public ResponseEntity<byte[]> getFile(@RequestParam("movieId") Long movieId, @RequestParam("segmentId") Long segmentId) {
         Optional<Trailer> fileEntityOptional = fileService.getFile(movieId, segmentId);
 
