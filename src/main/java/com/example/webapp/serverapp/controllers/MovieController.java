@@ -29,6 +29,7 @@ public class MovieController {
     }
 
     @GetMapping("/image")
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
     @Transactional
     public List<MovieRepository.MovieInterface> listImage(@RequestParam("page") int page, @RequestParam("numberMovie") int numberMovie) {
         Pageable number = PageRequest.of(page, numberMovie, Sort.by("movie_id"));
