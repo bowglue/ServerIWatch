@@ -38,6 +38,7 @@ public class AccountController {
     }
 
     @PostMapping("/login")
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
     public JwtResponse login(@RequestBody JwtRequest jwtRequest) throws Exception{
         try{
            Authentication authentication = authenticationManager.authenticate(
@@ -60,6 +61,7 @@ public class AccountController {
     }
 
     @PostMapping("/register")
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
     public ResponseEntity register(@RequestBody final Account registerParam) {
         Account registerEmail = accountRepository.findByEmail(registerParam.getEmail());
         if(registerEmail != null){
