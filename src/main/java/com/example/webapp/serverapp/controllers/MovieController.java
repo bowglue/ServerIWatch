@@ -43,6 +43,14 @@ public class MovieController {
         return movieRepository.findFocusImage(id);
     }
 
+    @GetMapping("/header")
+    @CrossOrigin(origins = "https://frostwatch.herokuapp.com")
+    @Transactional
+    public List<MovieRepository.MovieInterface> headerImage(@RequestParam("page") int page, @RequestParam("numberMovie") int numberMovie) {
+        Pageable number = PageRequest.of(page, numberMovie, Sort.by("movie_id"));
+        return movieRepository.findHeaderImage(number);
+    }
+
 
    /* @RequestMapping("{id}")
     @Transactional

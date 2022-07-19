@@ -24,4 +24,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query(value = "SELECT movie_id as movie_id, movie_focus as movie_focus from movie where movie_id = ?1")
     MovieInterface findFocusImage(Long id);
 
+    @Query(value = "SELECT movie_id as movie_id, movie_focus as movie_focus, movie_title as movie_title from movie")
+    List<MovieInterface> findHeaderImage(Pageable pageable);
+
 }
