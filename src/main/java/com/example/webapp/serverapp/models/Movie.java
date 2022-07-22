@@ -5,7 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "movie")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -20,6 +22,15 @@ public class Movie {
     private byte[] movie_title;
 
     private byte[] movie_focus;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "genre_mapping",
+            joinColumns = @JoinColumn(name = "movie_mapping_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_mapping_id")
+    )
+    private List<Genre> genre;
+
 
     public Long getMovie_id() {
        return movie_id;
